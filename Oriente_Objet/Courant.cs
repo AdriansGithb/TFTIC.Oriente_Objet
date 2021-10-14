@@ -38,6 +38,15 @@ namespace Oriente_Objet
         {
             this.Solde += montant;
         }
+        public static double operator +(Courant cpt1, Courant cpt2)
+        {
+            double result = 0;
+            if (cpt1.Solde >= 0)
+                result += cpt1.Solde;
+            if (cpt2.Solde >= 0)
+                result += cpt2.Solde;
+            return result;
+        }
         public static double operator +(Courant cpt, double montant)
         {
             double result = 0 ;
