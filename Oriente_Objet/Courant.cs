@@ -6,11 +6,12 @@ using System.Threading.Tasks;
 
 namespace Oriente_Objet
 {
-    class Courant
+    class Courant : Compte
     {
-        public string Numero { get; set; }
-        public double Solde { get; private set; }
-        public Personne Titulaire { get; set; }
+        //public string Numero { get; set; }
+        //public double Solde { get; private set; }
+        //public Personne Titulaire { get; set; }
+
         public double _ligneDeCredit;
         public double LigneDeCredit
         {
@@ -23,21 +24,16 @@ namespace Oriente_Objet
             }
         }
 
-        public void Retrait(double montant)
+        public override void Retrait(double montant, double ligneDeCredit=0)
         {
-            if (montant < 0)
-                return;
-            else
-            {
-                double nwSolde = this.Solde - montant;
-                if (nwSolde >= -LigneDeCredit)
-                    this.Solde -= montant;
-            }
+            base.Retrait(montant, this.LigneDeCredit);
         }
-        public void Depot(double montant)
-        {
-            this.Solde += montant;
-        }
+
+        //public void Depot(double montant)
+        //{
+        //    this.Solde += montant;
+        //}
+
         public static double operator +(Courant cpt1, Courant cpt2)
         {
             double result = 0;
