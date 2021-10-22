@@ -31,6 +31,24 @@ namespace Oriente_Objet
                 return;
             this.Solde += montant;
         }
+        public static double operator +(Compte cpt1, Compte cpt2)
+        {
+            double result = 0;
+            if (cpt1.Solde >= 0)
+                result += cpt1.Solde;
+            if (cpt2.Solde >= 0)
+                result += cpt2.Solde;
+            return result;
+        }
+        public static double operator +(Compte cpt, double montant)
+        {
+            double result = 0;
+            if (montant >= 0)
+                result += cpt.Solde;
+            if (cpt.Solde >= 0)
+                result += montant;
+            return result;
+        }
 
     }
 }
