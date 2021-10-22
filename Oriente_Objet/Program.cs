@@ -42,7 +42,7 @@ namespace Oriente_Objet
 
 
             Console.WriteLine($"Compte N° {auBonBillet["BE97 0000 0000 0000"].Numero}\nTitulaire : {auBonBillet["BE97 0000 0000 0000"].Titulaire.Nom} {auBonBillet["BE97 0000 0000 0000"].Titulaire.Prenom} né en {auBonBillet["BE97 0000 0000 0000"].Titulaire.DateNaiss.Year}");
-            Console.WriteLine($"Solde actuel : {auBonBillet["BE97 0000 0000 0000"].Solde}\tLigne de crédit : {auBonBillet["BE97 0000 0000 0000"].LigneDeCredit}");
+            Console.WriteLine($"Solde actuel : {auBonBillet["BE97 0000 0000 0000"].Solde}\tLigne de crédit : {((Courant)auBonBillet["BE97 0000 0000 0000"]).LigneDeCredit}");
 
             //auBonBillet.Supprimer("BE97 0000 0000 0000");
 

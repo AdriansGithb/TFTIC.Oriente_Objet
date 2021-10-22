@@ -9,16 +9,16 @@ namespace Oriente_Objet
     class Banque
     {
         public string Nom { get; set; }
-        private Dictionary<string, Courant> _Comptes;
-        public Dictionary<string, Courant> Comptes
+        private Dictionary<string, Compte> _Comptes;
+        public Dictionary<string, Compte> Comptes
         {
-            get { return _Comptes = _Comptes ?? new Dictionary<string, Courant>(); }
+            get { return _Comptes = _Comptes ?? new Dictionary<string, Compte>(); }
         }
-        public Courant this[string numero]
+        public Compte this[string numero]
         {
             get
             {
-                Courant cpt;
+                Compte cpt;
                 Comptes.TryGetValue(numero, out cpt);
                 return cpt;
             }
@@ -28,7 +28,7 @@ namespace Oriente_Objet
                     Comptes[numero] = value;
             }
         }
-        public void Ajouter(Courant compte)
+        public void Ajouter(Compte compte)
         {
             if (compte != null)
                 Comptes.Add(compte.Numero, compte);
@@ -43,7 +43,7 @@ namespace Oriente_Objet
             if (titulaire == null)
                 return 0;
             double result = 0;
-            foreach(Courant cpt in Comptes.Values)
+            foreach(Compte cpt in Comptes.Values)
             {
                 if (cpt.Titulaire == titulaire)
                     result = cpt + result;
