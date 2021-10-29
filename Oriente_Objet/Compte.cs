@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace Oriente_Objet
 {
-    class Compte
+    abstract class Compte
     {
         public string Numero { get; set; }
         public double Solde { get; private set; }
@@ -49,6 +49,10 @@ namespace Oriente_Objet
                 result += montant;
             return result;
         }
-
+        protected abstract double CalculInteret();
+        public void AppliquerInteret()
+        {
+            this.Solde += this.CalculInteret();
+        }
     }
 }

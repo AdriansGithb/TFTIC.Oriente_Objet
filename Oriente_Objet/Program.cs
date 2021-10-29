@@ -52,6 +52,10 @@ namespace Oriente_Objet
             // Exos 03
             auBonBillet["BE87 0000 0000 0010"].Retrait(100);
             Console.WriteLine($"Avoir des comptes : {auBonBillet.AvoirDesComptes(p1)}");
+
+            auBonBillet["BE87 0000 0000 0010"].AppliquerInteret();
+            Console.WriteLine($"Avoir des comptes : {auBonBillet.AvoirDesComptes(p1)}");
+
         }
     }
 }

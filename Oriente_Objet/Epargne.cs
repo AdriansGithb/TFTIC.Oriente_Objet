@@ -11,6 +11,7 @@ namespace Oriente_Objet
         //public string Numero { get; set; }
         //public double Solde { get; private set; }
         public DateTime DateDernierRetrait { get; set; }
+        private const double tauxInteret = 0.45;
 
         public override void Retrait(double montant, double ligneDeCredit = 0)
         {
@@ -18,6 +19,10 @@ namespace Oriente_Objet
             base.Retrait(montant);
             if (this.Solde != ancienSolde)
                 this.DateDernierRetrait = DateTime.Now;
+        }
+        protected override double CalculInteret()
+        {
+            return this.Solde * tauxInteret;
         }
 
         //public Personne Titulaire { get; set; }

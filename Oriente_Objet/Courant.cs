@@ -23,12 +23,19 @@ namespace Oriente_Objet
                 else _ligneDeCredit = 0;
             }
         }
+        private const double tauxIntPos = 0.03;
+        private const double tauxIntNeg = 0.0975;
 
         public override void Retrait(double montant, double ligneDeCredit=0)
         {
             base.Retrait(montant, this.LigneDeCredit);
         }
-
+        protected override double CalculInteret()
+        {
+            if (this.Solde >= 0)
+                return this.Solde * tauxIntPos;
+            else return this.Solde * tauxIntNeg;
+        }
         //public void Depot(double montant)
         //{
         //    this.Solde += montant;
