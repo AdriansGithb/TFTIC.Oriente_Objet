@@ -26,6 +26,19 @@ namespace Oriente_Objet
         private const double tauxIntPos = 0.03;
         private const double tauxIntNeg = 0.0975;
 
+        public Courant(string numero, Personne titulaire) : base(numero, titulaire)
+        {
+
+        }
+        public Courant(string numero, Personne titulaire, double solde) : base(numero, titulaire, solde)
+        {
+
+        }
+
+        public Courant(string numero, double ligneDeCredit, Personne titulaire) : base(numero, titulaire)
+        {
+            this.LigneDeCredit = ligneDeCredit;
+        }
         public override void Retrait(double montant, double ligneDeCredit=0)
         {
             base.Retrait(montant, this.LigneDeCredit);

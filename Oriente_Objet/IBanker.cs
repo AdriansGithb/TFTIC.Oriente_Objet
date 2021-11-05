@@ -2,8 +2,8 @@
 {
     interface IBanker : ICustomer
     {
-        string Numero { get; set; }
-        Personne Titulaire { get; set; }
+        string Numero { get;  }
+        Personne Titulaire { get;  }
 
         void AppliquerInteret();
     }

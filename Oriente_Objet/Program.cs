@@ -6,15 +6,9 @@ namespace Oriente_Objet
     {
         static void Main(string[] args)
         {
-            Personne p1 = new Personne();
-            p1.Prenom = "Samuel";
-            p1.Nom = "Legrain";
-            p1.DateNaiss = new DateTime(1987, 9, 27);
+            Personne p1 = new Personne("Samuel","Legrain",new DateTime(1987, 9, 27));
 
-            Courant c1 = new Courant();
-            c1.Numero = "BE97 0000 0000 0000";
-            c1.LigneDeCredit = 200;
-            c1.Titulaire = p1;
+            Courant c1 = new Courant("BE97 0000 0000 0000",200,p1);
 
             Console.WriteLine(c1);
 
@@ -37,7 +31,7 @@ namespace Oriente_Objet
             Banque auBonBillet = new Banque() { Nom = "Au bon Billet" };
             auBonBillet.Ajouter(c1);
             c1.Depot(100);
-            auBonBillet.Ajouter(new Courant() { Numero = "BE87 0000 0000 0010", Titulaire = p1, LigneDeCredit = 500 });
+            auBonBillet.Ajouter(new Courant("BE87 0000 0000 0010" ,500,p1) );
             auBonBillet.Ajouter(null);
 
 

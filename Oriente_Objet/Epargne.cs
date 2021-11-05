@@ -10,8 +10,19 @@ namespace Oriente_Objet
     {
         //public string Numero { get; set; }
         //public double Solde { get; private set; }
-        public DateTime DateDernierRetrait { get; set; }
+        public DateTime DateDernierRetrait { get; private set; }
         private const double tauxInteret = 0.45;
+
+        public Epargne(string numero, Personne titulaire) 
+            : base(numero, titulaire)
+        {
+
+        }
+        public Epargne(string numero, Personne titulaire, double solde, DateTime dateDernierRetrait) 
+            : base(numero, titulaire, solde)
+        {
+            this.DateDernierRetrait = dateDernierRetrait;
+        }
 
         public override void Retrait(double montant, double ligneDeCredit = 0)
         {

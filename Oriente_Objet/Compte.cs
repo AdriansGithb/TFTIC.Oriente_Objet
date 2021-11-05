@@ -8,15 +8,25 @@ namespace Oriente_Objet
 {
     abstract class Compte : ICustomer, IBanker
     {
-        public string Numero { get; set; }
+        public string Numero { get; private set; }
         public double Solde { get; private set; }
-        public Personne Titulaire { get; set; }
+        public Personne Titulaire { get; private set; }
         //Si on ajoute LigneDeCredit à IBanker :
         //public virtual double LigneDeCredit
         //{
         //    get { return 0; }
         //    set { return; } // to do : implémenter erreur
         //}
+
+        public Compte(string numero, Personne titulaire)
+        {
+            this.Numero = numero;
+            this.Titulaire = titulaire;
+        }
+        public Compte(string numero, Personne titulaire, double solde) : this(numero, titulaire)
+        {
+            this.Solde = solde;
+        }
 
         public virtual void Retrait(double montant, double ligneDeCredit = 0)
         {
