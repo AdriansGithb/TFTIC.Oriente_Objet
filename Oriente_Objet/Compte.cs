@@ -6,11 +6,17 @@ using System.Threading.Tasks;
 
 namespace Oriente_Objet
 {
-    abstract class Compte
+    abstract class Compte : ICustomer, IBanker
     {
         public string Numero { get; set; }
         public double Solde { get; private set; }
         public Personne Titulaire { get; set; }
+        //Si on ajoute LigneDeCredit à IBanker :
+        //public virtual double LigneDeCredit
+        //{
+        //    get { return 0; }
+        //    set { return; } // to do : implémenter erreur
+        //}
 
         public virtual void Retrait(double montant, double ligneDeCredit = 0)
         {
@@ -22,7 +28,7 @@ namespace Oriente_Objet
                 {
                     this.Solde -= montant;
                 }
-                else return ; // erreur a implémenter
+                else return; // erreur a implémenter
             }
         }
         public virtual void Depot(double montant)
