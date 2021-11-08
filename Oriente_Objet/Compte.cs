@@ -6,10 +6,12 @@ using System.Threading.Tasks;
 
 namespace Oriente_Objet
 {
-    delegate void PassageEnNegatifDelegate(Compte cpt);
+    //delegate void PassageEnNegatifDelegate(Compte cpt);
     abstract class Compte : ICustomer, IBanker
     {
-        public event PassageEnNegatifDelegate PassageEnNegatifEvent;
+        //public event PassageEnNegatifDelegate PassageEnNegatifEvent;
+        public Action<Compte> PassageEnNegatifEvent;
+
 
         public string Numero { get; private set; }
         public double Solde { get; private set; }
