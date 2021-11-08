@@ -49,7 +49,10 @@ namespace Oriente_Objet
         }
         public override void Retrait(double montant, double ligneDeCredit=0)
         {
+            double oldSolde = this.Solde;
             base.Retrait(montant, this.LigneDeCredit);
+            if ((oldSolde != this.Solde) && (oldSolde >= 0) && (this.Solde < 0))
+                RaisePassageEnNegatifEvent();
         }
         protected override double CalculInteret()
         {

@@ -31,12 +31,23 @@ namespace Oriente_Objet
         public void Ajouter(Compte compte)
         {
             if (compte != null)
+            {
                 Comptes.Add(compte.Numero, compte);
+                compte.PassageEnNegatifEvent += PassageEnNegatifAction;
+            }
         }
         public void Supprimer(string numero)
         {
+            
             if (numero != null)
-                Comptes.Remove(numero);
+            {
+                Compte cpt = this[numero];
+                if (cpt != null)
+                {
+                    cpt.PassageEnNegatifEvent -= PassageEnNegatifAction;
+                    Comptes.Remove(numero);
+                }
+            }
         }
         public double AvoirDesComptes(Personne titulaire)
         {
@@ -51,5 +62,9 @@ namespace Oriente_Objet
             return result;
         }
 
+        private void PassageEnNegatifAction(Compte cpt)
+        {
+            Console.WriteLine($"Le compte {cpt.Numero} vient de passer en négatif");
+        }
     }
 }

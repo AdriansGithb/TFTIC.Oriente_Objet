@@ -6,8 +6,11 @@ using System.Threading.Tasks;
 
 namespace Oriente_Objet
 {
+    delegate void PassageEnNegatifDelegate(Compte cpt);
     abstract class Compte : ICustomer, IBanker
     {
+        public event PassageEnNegatifDelegate PassageEnNegatifEvent;
+
         public string Numero { get; private set; }
         public double Solde { get; private set; }
         public Personne Titulaire { get; private set; }
@@ -90,6 +93,12 @@ namespace Oriente_Objet
         public void AppliquerInteret()
         {
             this.Solde += this.CalculInteret();
+        }
+
+        protected void RaisePassageEnNegatifEvent()
+        {
+            if (PassageEnNegatifEvent != null)
+                PassageEnNegatifEvent(this);
         }
     }
 }
