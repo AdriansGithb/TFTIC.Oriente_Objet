@@ -30,22 +30,43 @@ namespace Oriente_Objet
 
         public virtual void Retrait(double montant, double ligneDeCredit = 0)
         {
-            if (montant < 0)
-                return;
-            else
+            try
             {
-                if (this.Solde - montant >= -ligneDeCredit)
+                if (montant < 0)
+                    throw new ArgumentOutOfRangeException("Le montant doit être supérieur ou égal à 0");
+                else
                 {
-                    this.Solde -= montant;
+                    if (this.Solde - montant >= -ligneDeCredit)
+                    {
+                        this.Solde -= montant;
+                    }
+                    else throw new SoldeInsuffisantException(); 
                 }
-                else return; // erreur a implémenter
+            }
+            catch (ArgumentOutOfRangeException ex)
+            {
+                Console.WriteLine(ex.Message);
+                return;
+            }
+            catch (SoldeInsuffisantException siex)
+            {
+                Console.WriteLine(siex.Message);
+                return;
             }
         }
         public virtual void Depot(double montant)
         {
-            if (montant < 0)
+            try
+            {
+                if (montant < 0)
+                    throw new ArgumentOutOfRangeException("Le montant doit être supérieur ou égal à 0");
+                this.Solde += montant;
+            }
+            catch(ArgumentOutOfRangeException ex)
+            {
+                Console.WriteLine(ex.Message);
                 return;
-            this.Solde += montant;
+            }
         }
         public static double operator +(Compte cpt1, Compte cpt2)
         {

@@ -18,9 +18,17 @@ namespace Oriente_Objet
             get { return _ligneDeCredit; }
             set
             {
-                if (value >= 0)
-                    _ligneDeCredit = value;
-                else _ligneDeCredit = 0;
+                try
+                {
+                    if (value >= 0)
+                        _ligneDeCredit = value;
+                    else throw new InvalidOperationException("La valeur de la ligne de crédit doit être supérieure à 0");
+                }
+                catch (InvalidOperationException ioex)
+                {
+                    Console.WriteLine(ioex.Message);
+                    _ligneDeCredit = 0;
+                }
             }
         }
         private const double tauxIntPos = 0.03;
